@@ -3,7 +3,7 @@ import { Switch,Route,Link } from 'react-router-dom'
 
 import './App.css';
 import ShopPage from './pages/shop/shop.component'
-
+import Header from './components/header/header.component'
 import HomePage from './pages/homepage/homepage.component'
 
 
@@ -48,13 +48,13 @@ const TopicDetail=(props) => {
 }
 
 function App() {
-  return (<div className="App">
-
- 
+  return (<div>
+<Header />
+<switch> 
   <Route  exact path='/' component={HomePage} />
   <Route exact path='/shop' component={ShopPage} />
   
-  
+  </switch>
   
   
   </div>) 
