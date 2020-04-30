@@ -2,6 +2,8 @@ import React from 'react';
 import { Switch,Route,Link } from 'react-router-dom'
 
 import './App.css';
+
+import SignInAndSignUpPage from '../src/pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
 import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
 import HomePage from './pages/homepage/homepage.component'
@@ -53,7 +55,7 @@ function App() {
 <switch> 
   <Route  exact path='/' component={HomePage} />
   <Route exact path='/shop' component={ShopPage} />
-  
+  <Route exacr path='/signin' component={SignInAndSignUpPage}  />
   </switch>
   
   
