@@ -7,7 +7,7 @@ import SignInAndSignUpPage from '../src/pages/sign-in-and-sign-up/sign-in-and-si
 import ShopPage from './pages/shop/shop.component'
 import Header from './components/header/header.component'
 import HomePage from './pages/homepage/homepage.component'
-
+import { auth } from './firebase/firebase.utils';
 
 // const HomePage = (props) =>{
 //   console.log(props)
@@ -49,17 +49,46 @@ const TopicDetail=(props) => {
   )
 }
 
-function App() {
+class App extends React.Component {
+ constructor(){
+   super();
+   this.state={
+     currentUser:null
+   }
+
+ }
+
+ unsubscribeFromAuth=null;
+
+ componentWillUnmount(){
+   this.unsubscribeFromAuth();
+   
+ }
+
+ componentDidMount(){
+  this.unsubscribeFromAuth=auth.onAuthStateChanged(user => {
+    this.setState({ currentUser:user });
+    console.log(user)
+  }
+  
+  )
+  
+ }
+
+
+ render(){
   return (<div>
-<Header />
-<switch> 
-  <Route  exact path='/' component={HomePage} />
-  <Route exact path='/shop' component={ShopPage} />
-  <Route exacr path='/signin' component={SignInAndSignUpPage}  />
-  </switch>
-  
-  
-  </div>) 
-}
+    <Header currentUser={this.state.currentUser} />
+    <Switch> 
+      <Route  exact path='/' component={HomePage} />
+      <Route exact path='/shop' component={ShopPage} />
+      <Route exacr path='/signin' component={SignInAndSignUpPage}  />
+      </Switch>
+      
+      
+      </div>) 
+    
+ }
+ }
 
 export default App;
